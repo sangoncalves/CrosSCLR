@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+data/NTU-RGB-D/xsub/train_data.npy
+data/NTU-RGB-D/xview/train_data.npy
