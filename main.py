@@ -51,7 +51,15 @@ if __name__ == '__main__':
 
     # start
     Processor = processors[arg.processor]
-    p = Processor(sys.argv[2:])
+    print("sys.argv[2:]: ", sys.argv[2:])
+    print(os.getcwd())
+    #os.chdir("/content/CrosSCLR/weights")
+    #print(os.getcwd())
+    
+    #p = Processor(['--config', 'CrosSCLR/config/linear_eval/linear_eval_crossclr_3views_xview.yaml', '--weights', 'CrosSCLR/weights/crossclr_3views_xview_frame50_channel16_cross150_epoch300.pt!'])
+    p = Processor(['--config', '/content/CrosSCLR/config/linear_eval/linear_eval_crossclr_3views_xview.yaml', '--weights', '/content/CrosSCLR/weights/crossclr_3views_xview_frame50_channel16_cross150_epoch300.pt'])
+    
+    # p = Processor(sys.argv[2:])
 
     if p.arg.phase == 'train':
         # save src

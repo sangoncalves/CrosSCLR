@@ -1,0 +1,60 @@
+# command line: main.py pretrain_crossclr_3views --config config/CrosSCLR/crossclr_3views_xview.yaml
+
+base_lr: 0.1
+batch_size: 128
+config: config/CrosSCLR/crossclr_3views_xview.yaml
+context: true
+cross_epoch: 150
+debug: false
+device:
+- 0
+eval_interval: -1
+ignore_weights: []
+log_interval: 100
+model: net.crossclr_3views.CrosSCLR
+model_args:
+    Temperature: 0.07
+    base_encoder: net.st_gcn.Model
+    dropout: 0.5
+    edge_importance_weighting: true
+    feature_dim: 128
+    graph_args:
+        layout: ntu-rgb+d
+        strategy: spatial
+    hidden_channels: 16
+    hidden_dim: 256
+    in_channels: 3
+    mlp: true
+    momentum: 0.999
+    num_class: 60
+    pretrain: true
+    queue_size: 32768
+nesterov: false
+num_epoch: 300
+num_worker: 4
+optimizer: SGD
+pavi_log: false
+phase: train
+print_log: true
+save_interval: 5
+save_log: true
+save_result: false
+start_epoch: 0
+step:
+- 250
+test_batch_size: 128
+test_feeder: feeder.feeder
+test_feeder_args: {}
+topk: 1
+train_feeder: feeder.ntu_feeder.Feeder_dual
+train_feeder_args:
+    data_path: data/NTU60_frame50/xview/train_position.npy
+    label_path: data/NTU-RGB-D/xview/train_label.pkl
+    mmap: true
+    shear_amplitude: 0.5
+    temperal_padding_ratio: 6
+use_gpu: true
+view: all
+weight_decay: 0.0001
+weights: null
+work_dir: work_dir/crossclr_3views/1_xview_frame50_channel16_epoch300_cross150
